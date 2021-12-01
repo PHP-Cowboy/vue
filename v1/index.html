@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>起步</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>hello {{name}}</h1>
+        <span v-bind:title="message">
+            鼠标悬停几秒钟查看此处动态绑定的提示信息！
+        </span>
+        <p v-if="seen">根据seen值来决定显示与否</p>
+        <ol>
+            <li v-for="todo in todoList">
+                {{todo.text}}
+            </li>
+        </ol>
+        <p>
+            {{message}}
+        </p>
+        <button v-on:click="reverseMessage">反转消息</button>
+        <p>{{message}}</p>
+        <input type="text" v-model="message">
+
+        <ol>
+            <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id"
+            ></todo-item>
+        </ol>
+
+        <button v-bind:disabled="isButtonDisabled">Button</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+        Vue.component('todo-item',{
+            props:['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        })
+        vm = new Vue({
+            el:'#app',
+            data:{
+                name:'Vue',
+                message:'页面加载于 '+ new Date().toDateString(),
+                seen:true,
+                todoList:[
+                    {
+                        text:"javascript",
+                    },
+                    {
+                        text:"Vue",
+                    },
+                    {
+                        text:"React",
+                    }
+                ],
+                groceryList:[
+                    {id:0, text:"蔬菜"},
+                    {id:1, text:"奶酪"},
+                    {id:2, text:"随便其它什么人吃的东西"},
+                ],
+                isButtonDisabled:null,//v-bind 如果 isButtonDisabled 的值是 null、undefined 或 false，则 disabled attribute 甚至不会被包含在渲染出来的 <button> 元素中。
+            },
+            methods:{
+                reverseMessage : function () {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -12,6 +12,11 @@
                 {{index}} - {{item}}
             </li>
         </ol>
+        <ul>
+            <li v-for="value in object">
+                {{value}}
+            </li>
+        </ul>
     </div>
     <script>
         Vue.config.productionTip = false
@@ -19,6 +24,11 @@
             itemList:{
                 aa:'bb',
                 cc:'dd',
+            },
+            object:{
+                title:'How to do lists in Vue',
+                author:'cowboy',
+                at:'2021-12-02'
             }
         }
         vm = new Vue({

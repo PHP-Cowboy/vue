@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ol>
+            <li v-for="(item, index) in itemList">
+                {{index}} - {{item}}
+            </li>
+        </ol>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        data = {
+            itemList:{
+                aa:'bb',
+                cc:'dd',
+            }
+        }
+        vm = new Vue({
+            el:'#app',
+            data:data,
+        })
+    </script>
+</body>
+</html>

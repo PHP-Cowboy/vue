@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="show">Hi</p>
+        <p v-else>No</p>
+
+        <template v-if="ok">
+            <label>UserName</label>
+            <input placeholder="Enter your username" type="text" v-model="username">
+        </template>
+            <label>Email</label>
+            <input placeholder="Enter your email" type="text" v-model="email">
+        <template v-else>
+
+        </template>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        data = {
+            show:false,
+            ok:false,
+            username:'',
+            email:''
+        }
+        vm = new Vue({
+            el:'#app',
+            data:data,
+        })
+    </script>
+</body>
+</html>

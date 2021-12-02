@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class 与 Style 绑定</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app" v-bind:class="objData">
+        <p>test</p>
+        <my-component v-bind:class="{ active: isActive }"></my-component>
+        <div v-bind:style="style_obj">111</div>
+    </div>
+
+
+
+    <script>
+        Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示
+
+        Vue.component('my-component', {
+            template: '<p class="foo bar">Hi</p>'
+        })
+
+        data = {
+            isActive:true,
+            error:null,
+            style_obj:{
+                color:'red',
+                fontSize:'30px',
+            }
+        }
+        vm = new Vue({
+            el:'#app',
+            data:data,
+            computed:{
+                objData:function () {
+                    return {
+                        active: this.isActive && !this.error,
+                        'text-danger': this.error && this.error.type === 'fatal'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

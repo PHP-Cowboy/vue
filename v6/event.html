@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="counter += 1">Add 1</button>
+        <p>The button above has been clicked {{ counter }} times.</p>
+
+        <button v-on:click="greet">Greet</button>
+
+        <button v-on:click="warn('Form cannot be submitted yet.',$event)">event</button>
+
+        <button v-on:click.once="counter += 1">Add 1</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        data = {
+            counter : 0,
+            name: 'vue.js',
+        }
+        vm = new Vue({
+            el:'#app',
+            data:data,
+            methods:{
+                greet: function (e) {
+                    console.log('Hello '+ this.name +'!')
+                    if (e){
+                        console.log(e.target.tagName)
+                    }
+                },
+                warn: function (msg,event) {
+                    console.log(msg)
+                    if (event){
+                        event.preventDefault()
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getter And Setter</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+
+    <script>
+        Vue.config.productionTip = false;
+        //数据代理
+        let obj = {x:100}
+        let obj2 = {y:200}
+        Object.defineProperty(obj2,'x', {
+            set(value){
+                obj.x = value
+            },
+            get(){
+                return obj.x
+            }
+        })
+        // Vue.$mount('#root')
+    </script>
+</body>
+</html>

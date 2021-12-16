@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a href="www.baidu.com" @click.prevent="showMsg">aaa</a>
+        <div @click.once="showMsg">
+            bbb
+            <div @click.stop="showMsg">
+                ccc
+            </div>
+        </div>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        data = {
+
+        }
+        vm = new Vue({
+            el:'#app',
+            data:data,
+            methods:{
+                showMsg(){
+                    alert("Hello")
+                }
+            }
+        })
+    </script>
+</body>
+</html>

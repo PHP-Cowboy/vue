@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>非但文件组件</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <school></school>
+
+    </div>
+    <script>
+        Vue.config.productionTip = false
+
+        var hello = Vue.extend({
+            template:`<div>
+                <h2>{{msg}}</h2>
+                </div>`,
+            data(){
+                return {
+                    msg:"你好呀"
+                }
+            }
+        })
+
+        var student = Vue.extend({
+            template:`<div>
+                <h2>{{name}}</h2>
+                <h2>{{address}}</h2>
+                <hello></hello>
+                </div>`,
+            data(){
+                return {
+                    name:"小王子",
+                    address:"M78星云",
+                }
+            },
+            components:{
+                hello
+            }
+        })
+
+        var school = Vue.extend({
+            template:`<div>
+                <h2>{{name}}</h2>
+                <h2>{{address}}</h2>
+                <button @click="showMsg">click me show tips</button>
+                <student>
+
+                </student>
+                </div>`,
+            data(){
+                return {
+                    name:"浙江大学",
+                    address:"紫金港",
+                }
+            },
+            components:{
+                student
+            },
+            methods:{
+                showMsg(){
+                    alert("aaa")
+                }
+            }
+        })
+
+        vm = new Vue({
+            el:"#root",
+            components:{
+                school
+            }
+        })
+
+    </script>
+</body>
+</html>
